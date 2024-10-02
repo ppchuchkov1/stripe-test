@@ -8,8 +8,7 @@ const stripePromise = loadStripe(
 
 const CheckoutForm = () => {
   const [products, setProducts] = useState([
-    { name: "Product 1", amount: 2000, currency: "bgn", quantity: 1 },
-    { name: "Product 2", amount: 5000, currency: "bgn", quantity: 2 },
+    { name: "Product 1", amount: 101, currency: "bgn", quantity: 1 },
   ]);
 
   const handleCheckout = async () => {
