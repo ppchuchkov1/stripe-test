@@ -1,0 +1,9 @@
+[build]
+  publish = "build"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://localhost:5001/api/:splat"
+  status = 200
+  force = true
