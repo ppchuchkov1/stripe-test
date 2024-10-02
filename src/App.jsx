@@ -15,14 +15,16 @@ const CheckoutForm = () => {
       amount: 1000,
       currency: "bgn",
       quantity: 1,
-      imageUrl: pr1, // Replace with actual image URL
+      imageUrl:
+        "https://images.unsplash.com/photo-1592492135673-55966d3b541a?q=80&w=2586&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Replace with actual image URL
     },
     {
       name: "Product 2",
       amount: 2000,
       currency: "bgn",
       quantity: 1,
-      imageUrl: pr2, // Replace with actual image URLr
+      imageUrl:
+        "https://images.unsplash.com/photo-1522706604291-210a56c3b376?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Replace with actual image URLr
     },
   ]);
 
