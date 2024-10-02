@@ -4,11 +4,25 @@ import { Elements } from "@stripe/react-stripe-js";
 
 const stripePromise = loadStripe(
   "pk_test_51Hkv2kGETpcP6ndNqcDK55NUzHUgiLIDAcOdEyMNyyYTMBKsmo0YsRja7LZDuQcQj2PdOe3dqglbSkQR7Yq1FIBV00xgkelsaE"
-); // Твоята Stripe Public Key
+); // Your Stripe Public Key
 
 const CheckoutForm = () => {
   const [products, setProducts] = useState([
-    { name: "Product 1", amount: 101, currency: "bgn", quantity: 1 },
+    {
+      name: "Product 1",
+      amount: 1000,
+      currency: "bgn",
+      quantity: 1,
+      imageUrl:
+        "https://apee.bg/wp-content/uploads/2018/06/t-shirt-with-logo-1-1.jpg", // Replace with actual image URL
+    },
+    {
+      name: "Product 2",
+      amount: 2000,
+      currency: "bgn",
+      quantity: 1,
+      imageUrl: "https://veirdo.in/cdn/shop/files/Artboard8.png?v=1724158576", // Replace with actual image URL
+    },
   ]);
 
   const handleCheckout = async () => {
@@ -20,7 +34,7 @@ const CheckoutForm = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(products), // Подай продуктите като JSON
+          body: JSON.stringify(products), // Send products as JSON
         }
       );
 
@@ -42,9 +56,18 @@ const CheckoutForm = () => {
       <h2>Checkout</h2>
       <ul>
         {products.map((product, index) => (
-          <li key={index}>
-            {product.name} - ${(product.amount / 100).toFixed(2)} x{" "}
-            {product.quantity}
+          <li key={index} style={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              style={{ width: "50px", height: "50px", marginRight: "10px" }} // Image styling
+            />
+            <div>
+              <div>
+                {product.name} - ${(product.amount / 100).toFixed(2)} x{" "}
+                {product.quantity}
+              </div>
+            </div>
           </li>
         ))}
       </ul>
