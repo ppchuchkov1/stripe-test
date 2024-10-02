@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import pr1 from "./assets/product1.jpg";
+import pr2 from "./assets/product2.jpg";
 
 const stripePromise = loadStripe(
   "pk_test_51Hkv2kGETpcP6ndNqcDK55NUzHUgiLIDAcOdEyMNyyYTMBKsmo0YsRja7LZDuQcQj2PdOe3dqglbSkQR7Yq1FIBV00xgkelsaE"
@@ -13,15 +15,14 @@ const CheckoutForm = () => {
       amount: 1000,
       currency: "bgn",
       quantity: 1,
-      imageUrl:
-        "https://apee.bg/wp-content/uploads/2018/06/t-shirt-with-logo-1-1.jpg", // Replace with actual image URL
+      imageUrl: pr1, // Replace with actual image URL
     },
     {
       name: "Product 2",
       amount: 2000,
       currency: "bgn",
       quantity: 1,
-      imageUrl: "https://veirdo.in/cdn/shop/files/Artboard8.png?v=1724158576", // Replace with actual image URL
+      imageUrl: pr2, // Replace with actual image URLr
     },
   ]);
 
