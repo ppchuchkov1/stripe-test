@@ -15,13 +15,13 @@ const CheckoutForm = () => {
   const handleCheckout = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/payment/create-checkout-session",
+        "https://localhost:5001/api/payment/create-checkout-session",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(products), // Изпращане на продуктите към бекенда
+          body: JSON.stringify(products), // Подай продуктите като JSON
         }
       );
 
