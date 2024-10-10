@@ -29,30 +29,28 @@ const CheckoutForm = () => {
 
   // Функция за обработка на плащане
   const handleCheckout = async () => {
-    // Създаваме line_items за Stripe
-    const lineItems = products.map((product) => ({
-      price_data: {
-        currency: product.currency,
-        product_data: {
-          name: product.name,
-        },
-        unit_amount: product.amount,
-      },
-      quantity: product.quantity,
-    }));
-
     try {
+      const lineItems = products.map((product) => ({
+        price_data: {
+          currency: product.currency,
+          product_data: {
+            name: product.name,
+          },
+          unit_amount: product.amount,
+        },
+        quantity: product.quantity,
+      }));
+
       const response = await fetch(
-        "http://localhost:5001/api/payment/create-checkout-session", // URL на бек-енда
+        "http://localhost:5001/api/payment/create-checkout-session",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ line_items: lineItems }), // Изпращаме line_items
+          body: JSON.stringify({ line_items: lineItems }), // Изпращане на line_items във валиден формат
         }
       );
-
       const { id: sessionId } = await response.json();
 
       const stripe = await stripePromise;
