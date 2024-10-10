@@ -31,7 +31,7 @@ const CheckoutForm = () => {
   const handleCheckout = async () => {
     try {
       const response = await fetch(
-        "https://localhost:5001/api/payment/create-checkout-session",
+        "http://localhost:5001/api/payment/create-checkout-session",
         {
           method: "POST",
           headers: {
