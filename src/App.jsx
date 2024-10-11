@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import pr1 from "./assets/product1.jpg";
-import pr2 from "./assets/product2.jpg";
 
 // Your public Stripe key
 const stripePromise = loadStripe(
@@ -17,14 +15,16 @@ const CheckoutForm = () => {
       amount: 1000, // Price in cents
       currency: "bgn",
       quantity: 1,
-      imageUrl: pr1,
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/3/34/EIZO_Foris_FG2421_VGA_computer_monitor_displaying_test_pattern.png",
     },
     {
       name: "Product 2",
       amount: 2000,
       currency: "bgn",
       quantity: 1,
-      imageUrl: pr2,
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/3/34/EIZO_Foris_FG2421_VGA_computer_monitor_displaying_test_pattern.png",
     },
   ]);
 
@@ -36,6 +36,7 @@ const CheckoutForm = () => {
           currency: product.currency,
           product_data: {
             name: product.name,
+            images: [product.imageUrl], // Update this line to use images instead of metadata
           },
           unit_amount: product.amount,
         },
@@ -49,7 +50,7 @@ const CheckoutForm = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ line_items: lineItems, customerEmail: email }), // Include email in the request body
+          body: JSON.stringify({ line_items: lineItems, customerEmail: email }),
         }
       );
       const { id: sessionId } = await response.json();
@@ -81,7 +82,7 @@ const CheckoutForm = () => {
             <img
               src={product.imageUrl}
               alt={product.name}
-              style={{ width: "50px", height: "50px", marginRight: "10px" }}
+              style={{ width: "100px", height: "100px", marginRight: "10px" }}
             />
             <div>
               <div>
