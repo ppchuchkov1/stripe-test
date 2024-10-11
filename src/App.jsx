@@ -4,30 +4,31 @@ import { Elements } from "@stripe/react-stripe-js";
 import pr1 from "./assets/product1.jpg";
 import pr2 from "./assets/product2.jpg";
 
-// Твоят публичен ключ за Stripe
+// Your public Stripe key
 const stripePromise = loadStripe(
   "pk_test_51Hkv2kGETpcP6ndNqcDK55NUzHUgiLIDAcOdEyMNyyYTMBKsmo0YsRja7LZDuQcQj2PdOe3dqglbSkQR7Yq1FIBV00xgkelsaE"
 );
 
 const CheckoutForm = () => {
+  const [email, setEmail] = useState(""); // State for email input
   const [products, setProducts] = useState([
     {
       name: "Product 1",
-      amount: 1000, // Цената в центове
-      currency: "bgn", // Може да смениш валутата според нуждите
+      amount: 1000, // Price in cents
+      currency: "bgn",
       quantity: 1,
-      imageUrl: pr1, // Локален път към картината
+      imageUrl: pr1,
     },
     {
       name: "Product 2",
-      amount: 2000, // Цената в центове
+      amount: 2000,
       currency: "bgn",
       quantity: 1,
-      imageUrl: pr2, // Локален път към картината
+      imageUrl: pr2,
     },
   ]);
 
-  // Функция за обработка на плащане
+  // Function to handle payment
   const handleCheckout = async () => {
     try {
       const lineItems = products.map((product) => ({
@@ -48,7 +49,7 @@ const CheckoutForm = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ line_items: lineItems }), // Изпращане на line_items във валиден формат
+          body: JSON.stringify({ line_items: lineItems, customerEmail: email }), // Include email in the request body
         }
       );
       const { id: sessionId } = await response.json();
@@ -67,6 +68,13 @@ const CheckoutForm = () => {
   return (
     <div>
       <h2>Checkout</h2>
+      <input
+        type="email"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)} // Update email state
+        required // Optional: Add required attribute for form validation
+      />
       <ul>
         {products.map((product, index) => (
           <li key={index} style={{ display: "flex", alignItems: "center" }}>
